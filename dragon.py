@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+"""
+Script takes three arguments in call:
+    ./dragon.py number_iterations square_size draw_speed
+"""
+
 import sys
 from turtle import *
 
