@@ -13,7 +13,7 @@ input: curve, array of "L" and "R" strings representing left and right turns
 output: array of "L" and "R" strings representing folding the input array once more
 """
 def fold(curve):
-	new = ["L", "R"]
+	new = ["R", "L"]
 	out = []
 	for i in range(len(curve)):
 		out.append(new[i % 2])
@@ -27,7 +27,7 @@ input: num, number of folds
 output: array of "L" and "R" strings representing a dragon curve with num folds
 """
 def create(num):
-	out = ["R"]
+	out = ["L"]
 	for i in range(num - 1):
 		out = fold(out)
 	return out
@@ -39,22 +39,23 @@ input: curve, array of "L" and "R" strings representing dragon curve
 output: none
 """
 def draw(curve, size):
-	left(90)
+	right(90)
 	forward(size)
 	for turn in curve:
-		if turn == "L":
-			left(90)
-		else:
+		if turn == "R":
 			right(90)
+		else:
+			left(90)
 		forward(size)
 
-num_iter = int(sys.argv[1])
-square_size = int(sys.argv[2])
-draw_speed = int(sys.argv[3])
+if __name__ == "__main__":
+	num_iter = int(sys.argv[1])
+	square_size = int(sys.argv[2])
+	draw_speed = int(sys.argv[3])
 
-speed(draw_speed)
+	speed(draw_speed)
 
-dragon_curve = create(num_iter)
-draw(dragon_curve, square_size)
+	dragon_curve = create(num_iter)
+	draw(dragon_curve, square_size)
 
-done()
+	done()
