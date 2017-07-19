@@ -8,12 +8,16 @@ Script takes three arguments in call:
 import sys
 from turtle import *
 
+QUARTER_TURN = 90
+RIGHT = 1
+LEFT = -1
+
 """
 input: curve, array of "L" and "R" strings representing left and right turns
 output: array of "L" and "R" strings representing folding the input array once more
 """
 def fold(curve):
-	new = ["R", "L"]
+	new = [RIGHT, LEFT]
 	out = []
 	for i in range(len(curve)):
 		out.append(new[i % 2])
@@ -27,7 +31,7 @@ input: num, number of folds
 output: array of "L" and "R" strings representing a dragon curve with num folds
 """
 def create(num):
-	out = ["L"]
+	out = [LEFT]
 	for i in range(num - 1):
 		out = fold(out)
 	return out
@@ -39,13 +43,9 @@ input: curve, array of "L" and "R" strings representing dragon curve
 output: none
 """
 def draw(curve, size):
-	right(90)
 	forward(size)
-	for turn in curve:
-		if turn == "R":
-			right(90)
-		else:
-			left(90)
+	for direction in curve:
+		right(direction * QUARTER_TURN)
 		forward(size)
 
 if __name__ == "__main__":
