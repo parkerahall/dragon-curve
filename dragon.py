@@ -48,14 +48,23 @@ def draw(curve, size):
 		right(direction * QUARTER_TURN)
 		forward(size)
 
+"""
+Draws dragon curve
+input: iter, number of iterations in curve
+        size, size of squares in resulting drawing
+        speed, draw speed (follows turtle.speed() documentation)
+output: none
+"""
+def dragon(iterations, size, draw_speed):
+    curve = create(iterations)
+    speed(draw_speed)
+    draw(curve, size)
+
+    done()
+
 if __name__ == "__main__":
 	num_iter = int(sys.argv[1])
 	square_size = int(sys.argv[2])
 	draw_speed = int(sys.argv[3])
 
-	speed(draw_speed)
-
-	dragon_curve = create(num_iter)
-	draw(dragon_curve, square_size)
-
-	done()
+	dragon(num_iter, square_size, speed)
